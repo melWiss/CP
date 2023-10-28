@@ -1,9 +1,9 @@
 #include <iostream>
 #include <map>
 
-int calc(int n) {
-    int k = n;
-    int sum = 0;
+long long calc(long long n) {
+    long long k = n;
+    long long sum = 0;
     while (k > 0 || n > 0) {
         k = n % 10;
         sum += k * k;
@@ -14,36 +14,26 @@ int calc(int n) {
 
 int main() {
     std::ios::sync_with_stdio(0);std::cin.tie(0);
-    int a, b, totalHappyNumbers = 0;
-    bool isHappy = true;
+    long long a, b, totalHappyNumbers = 0;
     std::cin >> a >> b;
-    std::map<int, int> numbers;
+    std::map<long long, int> numbers;
 
-    for (int n = a; n <= b; n++) {
-        int i = calc(n);
-        while (isHappy) {
-            numbers[i]++;
+    for (long long n = a; n <= b; n++) {
+        long long i = calc(n);
+        while (true) {
+            numbers[i] += 1;
             if (numbers[i] >= 2) {
                 if (i == 1) {
-                    break;
-                } else {
-                    isHappy = false;
-                    break;
+                    totalHappyNumbers++;
                 }
+                break;
             }
             i = calc(i);
         }
 
         numbers.clear();
-
-        if (isHappy) {
-            totalHappyNumbers++;
-        } else {
-            isHappy = true;
-        }
     }
 
     std::cout << totalHappyNumbers << std::endl;
-
     return 0;
 }

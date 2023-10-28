@@ -4,30 +4,21 @@ import "fmt"
 
 func main() {
 	var a, b, totalHappyNumbers int
-	var isHappy bool = true
 	fmt.Scanln(&a, &b)
 	var numbers = make(map[int]int)
 
 	for n := a; n <= b; n++ {
-		for i := calc(n); isHappy; i = calc(i) {
+		for i := calc(n); ; i = calc(i) {
 			numbers[i] += 1
 			if numbers[i] >= 2 {
 				if i == 1 {
-					break
-				} else {
-					isHappy = false
-					break
+					totalHappyNumbers++
 				}
+				break
 			}
 		}
 
 		numbers = make(map[int]int)
-
-		if isHappy {
-			totalHappyNumbers++
-		} else {
-			isHappy = true
-		}
 	}
 
 	fmt.Println(totalHappyNumbers)
