@@ -12,6 +12,7 @@ func main() {
 			numbers[i] += 1
 			if numbers[i] >= 2 {
 				if i == 1 {
+					fmt.Println(n)
 					totalHappyNumbers++
 				}
 				break
